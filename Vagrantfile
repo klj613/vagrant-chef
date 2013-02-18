@@ -47,6 +47,9 @@ Vagrant::Config.run do |config|
             config.vm.share_folder dir[:name], dir[:guest_path], dir[:host_path], { :create => true }
           end
         end
+
+        chef.json = opts[:node_vars] if opts[:node_vars]
+
       end
     end
   end
