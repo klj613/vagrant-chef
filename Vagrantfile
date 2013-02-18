@@ -42,6 +42,11 @@ Vagrant::Config.run do |config|
           end
         end
 
+        if opts[:directories]
+          opts[:directories].each do |dir|
+            config.vm.share_folder dir[:name], dir[:guest_path], dir[:host_path], { :create => true }
+          end
+        end
       end
     end
   end
