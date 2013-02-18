@@ -51,6 +51,8 @@ Vagrant::Config.run do |config|
         chef.json = opts[:node_vars] if opts[:node_vars]
 
       end
+
+      config.vm.provision :shell, :inline => "yum -y upgrade"
     end
   end
 end 
