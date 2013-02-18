@@ -1,7 +1,14 @@
 @provision = {
   :cookbooks =>  ["common/cookbooks"],
   :roles => ["common/roles"],
-  :recipes => ["recipe[epel]", "recipe[nginx]", "recipe[nginx::firewall]"]
+  :recipes => [
+    "recipe[epel]",
+    "recipe[remi]",
+    "recipe[php]",
+    "recipe[php::fpm]",
+    "recipe[nginx]",
+    "recipe[nginx::firewall]"
+  ]
 }
 
 @boxes = [
