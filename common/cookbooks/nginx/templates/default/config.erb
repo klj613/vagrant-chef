@@ -1,0 +1,30 @@
+server {
+    listen 80;
+
+    root <%= @app %>/web;
+
+    location / {
+        index <%= @controller %>.php;
+        try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /<%= @controller %>.php/$1 last;
+    }
+
+    location ~ ^/<%= @controller %>\.php(/|$) {
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param HTTPS off;
+    }
+
+    location ~ ^/\.php(/|$) {
+        deny all;
+    }
+
+    location ~ ^/\.ht {
+        deny all;
+    }
+}
