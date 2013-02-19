@@ -20,3 +20,8 @@ package rpm do
   source path 
   provider Chef::Provider::Package::Rpm
 end
+
+execute "enable" do
+  command "yum-config-manager --enable remi"
+  action :run
+end

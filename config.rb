@@ -2,6 +2,7 @@
   :cookbooks =>  ["common/cookbooks"],
   :roles => ["common/roles"],
   :recipes => [
+    "recipe[yum]",
     "recipe[epel]",
     "recipe[remi]",
     "recipe[php]",
